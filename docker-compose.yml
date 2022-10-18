@@ -1,18 +1,20 @@
-version: '3.6'
+version: "3.6"
 services:
   postgres:
     image: postgres:12
     restart: always
     volumes:
-    - db_data:/var/lib/postgresql/data
+      - db_data:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: postgrespassword
+    ports:
+      - "5432:5432"
   graphql-engine:
     image: hasura/graphql-engine:v2.13.0
     ports:
-    - "8080:8080"
+      - "8080:8080"
     depends_on:
-    - "postgres"
+      - "postgres"
     restart: always
     environment:
       ## postgres database to store Hasura metadata
@@ -27,7 +29,7 @@ services:
       ## uncomment next line to run console offline (i.e load console assets from server instead of CDN)
       # HASURA_GRAPHQL_CONSOLE_ASSETS_DIR: /srv/console-assets
       ## uncomment next line to set an admin secret
-      # HASURA_GRAPHQL_ADMIN_SECRET: myadminsecretkey
+      HASURA_GRAPHQL_ADMIN_SECRET: adminsecret
+      HASURA_GRAPHQL_JWT_SECRET: '{"type": "RS512", "key": "-----BEGIN CERTIFICATE-----\nMIIDGzCCAgOgAwIBAgIJNrLKcGcXI1KGMA0GCSqGSIb3DQEBCwUAMCsxKTAnBgNV\nBAMTIHlhbWFzb3UtZGV2ZWxvcG1lbnQuanAuYXV0aDAuY29tMB4XDTIxMDkwMjAy\nMDg0NVoXDTM1MDUxMjAyMDg0NVowKzEpMCcGA1UEAxMgeWFtYXNvdS1kZXZlbG9w\nbWVudC5qcC5hdXRoMC5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIB\nAQC1/fYaW99Yg2f3CQxv4eg7y33PYqb1Pg7M2qQ6m72XEhi0TkB6ZocQW4wkmklw\nnCAIiC8DMAYf0SS+TPJUcqqWKZzzX4gRsayAz4126ZL+naGkicNFMPRGU6ShoX78\nw1yCse0w34z7oBQplyWpIs8BO5Eg1Nah/KyAyKnTGROcwIul5sZ+yqsnTuqLtPK4\n8E9Y+7frzTVkpj92m8rVrFp7xQ7Y21ulWCdwmVSFD4O882bKDjNLQzsp9W5k3TbA\nyFsl4jIyJQgJs1yyRF33wysxHoFfjVCG68QYilzMPk2K++b4cHjLPZ5RQeoU4a9z\nrYljYQd2+rRZTMw0Htydb9vbAgMBAAGjQjBAMA8GA1UdEwEB/wQFMAMBAf8wHQYD\nVR0OBBYEFPJc9osPp184uuQMFum4NyfYxnzIMA4GA1UdDwEB/wQEAwIChDANBgkq\nhkiG9w0BAQsFAAOCAQEAqv9VRTY7AX3ufNsFqaLH2WLIubE5IB+5HYS5yWRYwv3Q\nd0tKKf+Gw1dWtBs3TnR3fqWnBdluJ5XgfhLqSf2qbEPG9AdLq9G7Z8Q9uCDgCsZo\nrIjIMnTtshMumgRVSCpysArL5J9B2PTnCfkihlTgK831N7EZoeyzxf6Ue6pDNOPV\nacD28bo6xHN6d2MorJymCcDq97v9l7bDZjdwRtJyJ1oqHX/fyVN58cChn/6W3uEB\n/FMYvuA+TWyPosPsczKQTjIAr58GTjx3uCIksXwfcsthXHV2PGa/+pxeZaqNIlEV\nLfb0koZzoMc1KSmoro/KBIaoSUgIWuwB1LJAJ25MNg==\n-----END CERTIFICATE-----"}'
 volumes:
   db_data:
-

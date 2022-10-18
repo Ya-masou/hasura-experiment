@@ -1,1 +1,49 @@
-[]
+- name: Github
+  definition:
+    url: https://api.github.com/graphql
+    timeout_seconds: 60
+    customization:
+      root_fields_namespace: github
+      type_names:
+        mapping: {}
+    headers:
+      - name: Authorization
+        value: bearer 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
+  comment: ""
+- name: Yamasou grafbase
+  definition:
+    url: https://nextjs-with-grafbase-ya-masou.grafbase.app/graphql
+    timeout_seconds: 60
+    customization:
+      root_fields_namespace: grafbase
+      type_names:
+        mapping: {}
+        prefix: gb_
+    headers:
+      - name: x-api-key
+        value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTkzMTg3MzAsImlzcyI6ImdyYWZiYXNlIiwiYXVkIjoiMDFHOUJITVpEQllZRUVEOTVBSkZKQk1DV1EiLCJqdGkiOiIwMUc5QkhNWkRCQllBMTZHMlpWUEs3V1o1NCIsImVudiI6InByb2R1Y3Rpb24iLCJwdXJwb3NlIjoicHJvamVjdC1hcGkta2V5In0.l8Uya6RmY72n89UFgYK5H_txft4cLDnFTr3ey2KEDTI
+  remote_relationships:
+    - relationships: []
+      type_name: Item
+    - relationships:
+        - definition:
+            to_source:
+              field_mapping:
+                id: id
+              relationship_type: array
+              source: development
+              table:
+                name: users
+                schema: public
+          name: Test
+        - definition:
+            to_remote_schema:
+              lhs_fields:
+                - id
+              remote_field:
+                user:
+                  arguments:
+                    login: $id
+              remote_schema: Github
+          name: Test2
+      type_name: User

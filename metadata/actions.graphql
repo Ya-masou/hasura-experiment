@@ -1,0 +1,25 @@
+type Query {
+  find_qiita_user(
+    user_id: String!
+  ): qiita_user
+}
+
+type Query {
+  mojahigeGithub(
+    username: String!
+    password: String!
+  ): mojahige
+}
+
+type mojahige {
+  name: String!
+}
+
+type qiita_user {
+  id: String!
+  description: String!
+  followers_count: Int!
+  followees_count: Int!
+  name: String!
+}
+
