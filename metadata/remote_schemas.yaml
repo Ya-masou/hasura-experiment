@@ -8,7 +8,7 @@
         mapping: {}
     headers:
       - name: Authorization
-        value: bearer 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
+        value: bearer {{GITHUB_PERSONAL_TOKEN}}
   comment: ""
 - name: Yamasou grafbase
   definition:
@@ -21,7 +21,7 @@
         prefix: gb_
     headers:
       - name: x-api-key
-        value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTkzMTg3MzAsImlzcyI6ImdyYWZiYXNlIiwiYXVkIjoiMDFHOUJITVpEQllZRUVEOTVBSkZKQk1DV1EiLCJqdGkiOiIwMUc5QkhNWkRCQllBMTZHMlpWUEs3V1o1NCIsImVudiI6InByb2R1Y3Rpb24iLCJwdXJwb3NlIjoicHJvamVjdC1hcGkta2V5In0.l8Uya6RmY72n89UFgYK5H_txft4cLDnFTr3ey2KEDTI
+        value: { { GRAFBASE_API_KEY } }
   remote_relationships:
     - relationships: []
       type_name: Item
