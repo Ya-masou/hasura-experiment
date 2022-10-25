@@ -1,0 +1,5 @@
+query MyQuery {
+  mojahigeGithub(password: "hoge", username: "hoge") {
+    name
+  }
+}
