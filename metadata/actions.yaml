@@ -1,14 +1,4 @@
 actions:
-  - name: find_qiita_user
-    definition:
-      kind: ""
-      handler: https://qiita.com/api/v2
-      request_transform:
-        query_params: {}
-        template_engine: Kriti
-        url: '{{$base_url}}/users/{{$body.input.user_id}}'
-        version: 2
-    comment: qiita
   - name: mojahigeGithub
     definition:
       kind: ""
